@@ -4,6 +4,7 @@
   "description": "Practicing authentication in line with The Odin Project's NodeJS course.",
   "main": "index.js",
   "scripts": {
+    "seed": "node ./db/populateDb.js",
     "start": "node --watch app.js"
   },
   "repository": {
