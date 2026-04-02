@@ -27,16 +27,18 @@ const createMessage = async (title, text, userId) => {
 
 const createUser = async (firstName, lastName, username, password) => {
   try {
-    await pool.query(`
+    const { rows } = await pool.query(`
       INSERT INTO users (first_name, last_name, username, password)
       VALUES ($1, $2, $3, $4)
+      RETURNING *
       `, [firstName, lastName, username, password]);
+    return rows[0];
   } catch (error) {
     console.error('Create failed', error);
   }
 }
 
-const setMemberStatus = async (userId) => {
+const updateMemberStatus = async (userId) => {
   try {
     await pool.query(`
       UPDATE users SET membership_status = true
@@ -51,5 +53,5 @@ module.exports = {
   getAllMessages, 
   createMessage, 
   createUser, 
-  setMemberStatus 
+  updateMemberStatus 
 }

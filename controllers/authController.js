@@ -27,13 +27,16 @@ exports.postSignup = [
     try {
       const hashedPw = await bcrypt.hash(req.body.password, 10);
       const data = matchedData(req);
-      await db.createUser(
+      const newUser = await db.createUser(
         data.first_name, 
         data.last_name, 
         data.username, 
         hashedPw
       );
-      res.redirect('/auth/login');
+      req.login(newUser, (error) => {
+        if (error) return next(error);
+        return res.redirect('/');
+      });
     } catch (error) {
       next(error);
     }
