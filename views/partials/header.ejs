@@ -13,9 +13,13 @@
     <nav>
       <ul>
         <li><a href="/">HOME</a></li>
-        <li><a href="/messages">MESSAGES</a></li>
-        <li><a href="/register">REGISTER</a></li>
-        <li><a href="/login">LOG IN</a></li>
+        <% if (currentUser) { %>
+          <li><a href="/messages">MESSAGES</a></li>
+          <li><a href="/auth/logout">LOGOUT</a></li>
+        <% } else { %>
+          <li><a href="/auth/register">REGISTER</a></li>
+          <li><a href="/auth/login">LOG IN</a></li>
+        <% } %>
       </ul>
     </nav>
 	</header>

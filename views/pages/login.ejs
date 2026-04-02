@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<main class="container">
+  <h1><%= title %></h1>
+  <% if (locals.errors) { %>
+    <ul class="error-list">
+      <% errors.forEach((error) => { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <%- include('../partials/loginForm') %>
+  <p>Don't have an account? <a href="/auth/register">Register here</a>.</p>
+</main>
+<%- include('../partials/footer') %>

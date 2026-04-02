@@ -1,8 +1,13 @@
 const { Router } = require('express');
-const router = Router();
+const { 
+  getHome, 
+  getJoinClub, 
+  postJoinClub 
+} = require('../controllers/indexController');
+const indexRouter = Router();
 
-const { indexGameGet } = require('../controllers/indexController');
+indexRouter.get('/', getHome);
+indexRouter.get('/join-club', getJoinClub);
+indexRouter.post('/join-club', postJoinClub);
 
-router.get('/', indexGameGet);
-
-module.exports = router;
+module.exports = indexRouter;

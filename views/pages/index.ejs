@@ -1,5 +1,50 @@
 <%- include('../partials/header') %>
-<main>
-
+<main class="container">
+  <h1>Welcome to <%= title %></h1>
+  <% if (currentUser) { %>
+    <section class="user-actions">
+      <p>Welcome back, <strong><%= currentUser.username %></strong>!</p>
+      <% if (!currentUser.membership_status) { %>
+        <p><a href="/join-club" class="btn-join">Click here to join the club and see who's posting!</a></p>
+      <% } else { %>
+        <p class="status-badge">⭐ Club Member</p>
+      <% } %>
+      <a href="/messages/new">Post a New Message</a>
+    </section>
+  <% } else { %>
+    <section class="guest-actions">
+      <p><a href="/auth/login">Log in</a> or <a href="/auth/register">Register</a> to start posting.
+      </p>
+    </section>
+  <% } %>
+  <hr>
+  <div class="message-list">
+    <% if (messages && messages.length > 0) { %>
+      <% messages.forEach(msg => { %>
+        <article class="message-card">
+            <div class="message-header">
+              <h2 class="message-title"><%= msg.title %></h2>
+              <p class="message-text"><%= msg.text %></p>
+            </div>
+            <div class="message-footer">
+              <% if (currentUser && currentUser.membership_status) { %>
+                <span class="author">By: <strong><%= msg.username %></strong></span>
+                <span class="date">on <%= new Date(msg.timestamp).toLocaleDateString() %></span>
+              <% } else { %>
+                <span class="author-hidden">By: <em>Anonymous</em></span>
+                <span class="date-hidden">(Join the club to see when)</span>
+              <% } %>
+              <% if (currentUser && currentUser.is_admin) { %>
+                <form action="/messages/<%= msg.id %>/delete" method="post" class="delete-form">
+                  <button type="submit" class="btn-delete">Delete</button>
+                </form>
+              <% } %>
+            </div>
+        </article>
+      <% }); %>
+    <% } else { %>
+      <p>No messages yet. Be the first to post!</p>
+    <% } %>
+  </div>
 </main>
 <%- include('../partials/footer') %>
