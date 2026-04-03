@@ -8,14 +8,14 @@ const {
 exports.getHome = async (req, res, next) => {
   try {
     const messages = await db.getAllMessages();
-    res.render('index', { title: 'The *** Club: Members Only', messages });
+    res.render('index', { title: 'The Club: Members Only', messages });
   } catch (error) {
     next(error);
   }
 }
 
 exports.getJoinClub = (req, res) => {
-  res.render('joinClub', { title: 'Join the Club' });
+  res.render('joinClub', { title: 'Join The Club' });
 }
 
 exports.postJoinClub = [ 
@@ -30,7 +30,7 @@ exports.postJoinClub = [
     if (!errors.isEmpty()) {
       return res.render(
         'joinClub',
-        { title: 'Join the Club', errors: errors.array() } 
+        { title: 'Join The Club', errors: errors.array() } 
       );
     }
     const data = matchedData(req);
@@ -48,7 +48,7 @@ exports.postJoinClub = [
       res.render(
         'joinClub', 
         { 
-          title: 'Join the Club', 
+          title: 'Join The Club', 
           errors: [{msg: 'Incorrect answer. Try again!' }]
         }
       );
@@ -57,7 +57,7 @@ exports.postJoinClub = [
 ];
 
 exports.getBecomeAdmin = (req, res) => {
-  res.render('becomeAdmin', { title: 'Become Admin' });
+  res.render('becomeAdmin', { title: 'The Club: Become Admin' });
 }
 
 exports.postBecomeAdmin = [
@@ -73,7 +73,7 @@ exports.postBecomeAdmin = [
       return res.render(
         'becomeAdmin', 
         {
-          title: 'Become Admin',
+          title: 'The Club: Become Admin',
           errors: errors.array(),
         }
       );
@@ -91,7 +91,7 @@ exports.postBecomeAdmin = [
       res.render(
         'becomeAdmin', 
         {
-          title: 'Become Admin',
+          title: 'The Club: Become Admin',
           errors: [{ msg: 'Incorrect admin passcode. Try again!' }]
         }
       );

@@ -1,20 +1,18 @@
 const { Router } = require('express');
-const { 
-  postSignup, 
+const {
+  getSignup,
+  postSignup,
+  getLogin,
   postLogin, 
   getLogout 
 } = require('../controllers/authController');
 const { isGuest, isAuthenticated } = require('../middleware/authMiddleware');
 const authRouter = Router();
 
-authRouter.get('/register', isGuest,
-  (req, res) => res.render('register', { title: 'Sign up' })
-);
+authRouter.get('/register', isGuest, getSignup);
 authRouter.post('/register', isGuest, postSignup);
 
-authRouter.get('/login', isGuest,
-  (req, res) => res.render('login', { title: 'Log In' })
-);
+authRouter.get('/login', isGuest, getLogin);
 authRouter.post('/login', isGuest, postLogin);
 
 authRouter.get('/logout', isAuthenticated, getLogout);

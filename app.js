@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.formatRelativeDate = (date) => {
-    return formatDistanceToNow(new Date(date), {addSuffix: true});
+    return formatDistanceToNow(new Date(date), { addSuffix: true });
   };
   res.locals.formatExactDate = (date) => {
     return format(new Date(date), "PPP 'at' p");

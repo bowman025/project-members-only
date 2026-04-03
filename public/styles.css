@@ -56,3 +56,100 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* CSS RESET ENDS HERE */
+
+:root {
+  --bg-dark: #111827;
+  --card-grey: #1f2937;
+  --accent-gold: #d97706;
+  
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --error-red: #ef4444;
+  --admin-purple: #8b5cf6;
+  
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--card-grey);
+  border-bottom: 2px solid var(--accent-gold);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+
+header h1 a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+header h1 a:hover {
+  filter: brightness(1.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 0;
+}
+
+nav ul li a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: var(--accent-gold);
+}
+
+nav ul li a[href="/join-club"], 
+nav ul li a[href="/become-admin"] {
+  display: inline-block;
+  background-color: var(--accent-gold);
+  color: var(--bg-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: transform 0.2s ease;
+}
+
+nav ul li a[href="/join-club"]:hover,
+nav ul li a[href="/become-admin"]:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  nav ul {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

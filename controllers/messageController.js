@@ -7,14 +7,14 @@ const {
 
 exports.getNewMessage = (req, res) => {
   if (!req.user) return res.redirect('/auth/login');
-  res.render('newMessage', { title: 'Create New Message' });
+  res.render('newMessage', { title: 'The Club: Create New Message' });
 }
 
 exports.getUserMessages = async (req, res, next) => {
   try {
     const messages = await db.getMessagesByUser(req.user.id);
     res.render('userMessages', {
-      title: 'My Messages',
+      title: 'The Club: My Messages',
       messages: messages,
     });
   } catch (error) {
@@ -38,7 +38,7 @@ exports.postNewMessage = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render('newMessage', {
-        title: 'Create New Message',
+        title: 'The Club: Create New Message',
         errors: errors.array(),
         message: req.body,
       });

@@ -8,6 +8,10 @@ const {
 } = require('express-validator');
 const CustomValidationError = require('../errors/CustomValidationError');
 
+exports.getSignup = (_, res) => {
+  return res.render('register', { title: 'The Club: Sign Up' });
+}
+
 exports.postSignup = [
   body('first_name')
   .optional({ values: 'falsy' })
@@ -46,7 +50,12 @@ exports.postSignup = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.render('register', { title: 'Sign Up', errors: errors.array()});
+      return res.render(
+        'register', { 
+          title: 'The Club: Sign Up', 
+          errors: errors.array()
+        }
+      );
     }
 
     try {
@@ -67,6 +76,10 @@ exports.postSignup = [
     }
   }
 ];
+
+exports.getLogin = (_, res) => {
+  return res.render('login', { title: 'The Club: Log In' });
+}
 
 exports.postLogin = passport.authenticate('local', {
   successRedirect: '/',
