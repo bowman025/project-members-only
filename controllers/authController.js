@@ -6,6 +6,7 @@ const {
   matchedData, 
   validationResult 
 } = require('express-validator');
+const CustomValidationError = require('../errors/CustomValidationError');
 
 exports.postSignup = [
   body('first_name')
@@ -28,7 +29,7 @@ exports.postSignup = [
   .custom(async (value) => {
     const user = await db.getUserByUsername(value);
     if (user) {
-      throw new Error('Username already in use.');
+      throw new CustomValidationError('Username already in use.');
     }
   }),
   body('password')
@@ -36,7 +37,9 @@ exports.postSignup = [
   .withMessage('Password must be between 6 and 50 characters.'),
   body('confirmPassword')
   .custom((value, { req }) => {
-    if (value !== req.body.password) throw new Error('Passwords do not match.');
+    if (value !== req.body.password) {
+      throw new CustomValidationError('Passwords do not match.')
+    };
     return true;
   }),
 

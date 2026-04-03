@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 <main class="container">
   <h1><%= title %></h1>
+  <p>Enter the secret administrator passcode to gain deletion privileges.</p>
   <% if (locals.errors) { %>
     <ul class="error-list">
       <% errors.forEach((error) => { %>
@@ -8,12 +9,7 @@
       <% }); %>
     </ul>
   <% } %>
-  <% if (currentUser && currentUser.is_admin) { %>
-    <p>You are already an admin!</p>
-    <a href="/">Back to home</a>
-  <% } else { %>
-    <p>Enter the secret administrator passcode to gain deletion privileges.</p>
-    <%- include('../partials/adminForm') %>
-  <% } %>
+  <%- include('../partials/adminForm') %>
+  <p>Changed your mind? <a href="/">Back to home</a>.</p>
 </main>
 <%- include('../partials/footer') %>

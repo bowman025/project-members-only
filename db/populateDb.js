@@ -39,7 +39,7 @@ const users = [
   {
     first_name: 'Isaac',
     last_name: 'Asimov',
-    username: 'TheSack',
+    username: 'theSack',
     membership: true,
     messages: [
       { title: 'On Ignorance',
@@ -53,7 +53,7 @@ const users = [
   {
     first_name: 'Carl',
     last_name: 'Sagan',
-    username: 'CurlyCarl',
+    username: 'carlSays',
     membership: true,
     messages: [
       { title: 'On Earth',
@@ -67,7 +67,7 @@ const users = [
   {
     first_name: 'Arthur C.',
     last_name: 'Clarke',
-    username: 'Arty-CC',
+    username: 'arty-CC',
     membership: true,
     messages: [
       { title: 'On Morality and Religion', 
@@ -81,7 +81,7 @@ const users = [
   { 
     first_name: 'Philip K.',
     last_name: 'Dick',
-    username: 'Philly-D',
+    username: 'phillyKD',
     membership: true,
     messages: [
       { title: 'On Reality', 

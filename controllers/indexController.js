@@ -23,7 +23,7 @@ exports.postJoinClub = [
   .trim()
   .isLength({ min: 1, max: 50 })
   .escape()
-  .withMessage('Passcode should be between 1 and 50 characters.'),
+  .withMessage('Your answer should be between 1 and 50 characters.'),
     
   async (req, res, next) => {
     const errors = validationResult(req);
@@ -49,7 +49,7 @@ exports.postJoinClub = [
         'joinClub', 
         { 
           title: 'Join the Club', 
-          errors: [{msg: 'Incorrect club passcode. Try again!' }]
+          errors: [{msg: 'Incorrect answer. Try again!' }]
         }
       );
     }

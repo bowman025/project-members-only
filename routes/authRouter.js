@@ -4,18 +4,19 @@ const {
   postLogin, 
   getLogout 
 } = require('../controllers/authController');
+const { isGuest, isAuthenticated } = require('../middleware/authMiddleware');
 const authRouter = Router();
 
-authRouter.get('/register', 
+authRouter.get('/register', isGuest,
   (req, res) => res.render('register', { title: 'Sign up' })
 );
-authRouter.post('/register', postSignup);
+authRouter.post('/register', isGuest, postSignup);
 
-authRouter.get('/login', 
+authRouter.get('/login', isGuest,
   (req, res) => res.render('login', { title: 'Log In' })
 );
-authRouter.post('/login', postLogin);
+authRouter.post('/login', isGuest, postLogin);
 
-authRouter.get('/logout', getLogout);
+authRouter.get('/logout', isAuthenticated, getLogout);
 
 module.exports = authRouter;
