@@ -15,7 +15,6 @@ indexRouter.get('/join-club', isAuthenticated, getJoinClub);
 indexRouter.post('/join-club', isAuthenticated, postJoinClub);
 
 indexRouter.get('/become-admin', isAuthenticated, isMember, getBecomeAdmin);
-indexRouter.post('/become-admin', isAuthenticated, isMember, getBecomeAdmin);
-
+indexRouter.post('/become-admin', isAuthenticated, isMember, postBecomeAdmin);
 
 module.exports = indexRouter;
