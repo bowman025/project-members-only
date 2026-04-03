@@ -35,7 +35,7 @@
               <span class="author">By: <strong><%= msg.username %></strong></span>
               <span class="date"><%= formatRelativeDate(msg.timestamp) %></span>
             <% } else { %>
-              <span class="author-hidden">By: <em>Anonymous</em></span>
+              <span class="author-hidden">By: Anonymous</span>
               <span class="date-hidden">(Join the club to see when)</span>
             <% } %>
             <% if (currentUser && currentUser.is_admin) { %>
