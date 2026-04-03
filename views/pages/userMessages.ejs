@@ -7,7 +7,7 @@
         <article class="message-card">
           <h3><%= msg.title %></h3>
           <p><%= msg.text %></p>
-          <p class="date"><%= new Date(msg.timestamp).toDateString() %></p>
+          <p class="date">Posted on <%= formatExactDate(msg.timestamp) %></p>
         </article>
       <% }); %>
     </div>

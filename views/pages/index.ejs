@@ -5,9 +5,13 @@
     <section class="user-actions">
       <p>Welcome back, <strong><%= currentUser.username %></strong>!</p>
       <% if (!currentUser.membership_status) { %>
-        <p><a href="/join-club" class="btn-join">Click here to join the club and see who's posting!</a></p>
+        <p><a href="/join-club" class="btn-join">Join the club and see who's posting!</a></p>
       <% } else { %>
-        <p class="status-badge">⭐ Club Member</p>
+        <p class="status-badge">⭐ Club Member
+        <% if (currentUser.is_admin) { %>
+          <span>& Admin</span>
+        <% } %>
+        </p>
       <% } %>
       <a href="/messages/new">Post a New Message</a>
     </section>
@@ -29,7 +33,7 @@
           <div class="message-footer">
             <% if (currentUser && currentUser.membership_status) { %>
               <span class="author">By: <strong><%= msg.username %></strong></span>
-              <span class="date">on <%= new Date(msg.timestamp).toLocaleDateString() %></span>
+              <span class="date"><%= formatRelativeDate(msg.timestamp) %></span>
             <% } else { %>
               <span class="author-hidden">By: <em>Anonymous</em></span>
               <span class="date-hidden">(Join the club to see when)</span>

@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-
+const { format, formatDistanceToNow } = require('date-fns');
 const passport = require('./config/passport');
 const sessionConfig = require('./config/session');
 const indexRouter = require('./routes/indexRouter');
@@ -23,6 +23,12 @@ app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.formatRelativeDate = (date) => {
+    return formatDistanceToNow(new Date(date), {addSuffix: true});
+  };
+  res.locals.formatExactDate = (date) => {
+    return format(new Date(date), "PPP 'at' p");
+  }
   next();
 });
 

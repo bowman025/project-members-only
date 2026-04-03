@@ -21,9 +21,9 @@ exports.getJoinClub = (req, res) => {
 exports.postJoinClub = [ 
   body('passcode')
   .trim()
-  .isLength({ min: 1})
+  .isLength({ min: 1, max: 50 })
   .escape()
-  .withMessage('Passcode is required.'),
+  .withMessage('Passcode should be between 1 and 50 characters.'),
     
   async (req, res, next) => {
     const errors = validationResult(req);
@@ -49,7 +49,7 @@ exports.postJoinClub = [
         'joinClub', 
         { 
           title: 'Join the Club', 
-          errors: [{msg: 'Incorrect passcode. Try again!' }]
+          errors: [{msg: 'Incorrect club passcode. Try again!' }]
         }
       );
     }
@@ -63,9 +63,9 @@ exports.getBecomeAdmin = (req, res) => {
 exports.postBecomeAdmin = [
   body('adminPasscode')
   .trim()
-  .isLength({ min: 1 })
+  .isLength({ min: 1, max: 50 })
   .escape()
-  .withMessage('Passcode is required.'),
+  .withMessage('Passcode should be between 1 and 50 characters.'),
 
   async (req, res, next) => {
     const errors = validationResult(req);

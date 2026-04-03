@@ -8,8 +8,23 @@ const {
 } = require('express-validator');
 
 exports.postSignup = [
-  body('username').trim()
-  .isLength({ min: 1}).escape().withMessage('Username is required.')
+  body('first_name')
+  .optional({ values: 'falsy' })
+  .trim()
+  .isLength({ min: 1, max: 50 })
+  .escape()
+  .withMessage('First name should be between 1 and 50 characters.'),
+  body('last_name')
+  .optional({ values: 'falsy' })
+  .trim()
+  .isLength({ min: 1, max: 50 })
+  .escape()
+  .withMessage('Last name should be between 1 and 50 characters.'),
+  body('username')
+  .trim()
+  .isLength({ min: 1, max: 50 })
+  .escape()
+  .withMessage('Username should be between 1 and 50 characters.')
   .custom(async (value) => {
     const user = await db.getUserByUsername(value);
     if (user) {
@@ -17,7 +32,8 @@ exports.postSignup = [
     }
   }),
   body('password')
-  .isLength({ min: 6 }).withMessage('Password must be at least 6 characters.'),
+  .isLength({ min: 6, max: 50 })
+  .withMessage('Password must be between 6 and 50 characters.'),
   body('confirmPassword')
   .custom((value, { req }) => {
     if (value !== req.body.password) throw new Error('Passwords do not match.');
