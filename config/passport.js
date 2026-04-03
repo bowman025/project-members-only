@@ -11,13 +11,11 @@ passport.use(
         [username]
       );
       const user = rows[0];
-
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });
       }
 
       const match = await bcrypt.compare(password, user.password);
-      
       if (!match) {
         return done(null, false, { message: 'Incorrect password' });
       }
