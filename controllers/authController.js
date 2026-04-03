@@ -9,7 +9,13 @@ const {
 
 exports.postSignup = [
   body('username').trim()
-  .isLength({ min: 1}).escape().withMessage('Username is required.'),
+  .isLength({ min: 1}).escape().withMessage('Username is required.')
+  .custom(async (value) => {
+    const user = await db.getUserByUsername(value);
+    if (user) {
+      throw new Error('Username already in use.');
+    }
+  }),
   body('password')
   .isLength({ min: 6 }).withMessage('Password must be at least 6 characters.'),
   body('confirmPassword')
@@ -52,5 +58,5 @@ exports.getLogout = (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     res.redirect('/');
-  })
+  });
 }

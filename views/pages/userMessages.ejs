@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<main class="container">
+  <h1><%= title %></h1>
+  <% if (messages && messages.length > 0) { %>
+    <div class="message-list">
+      <% messages.forEach(msg => { %>
+        <article class="message-card">
+          <h3><%= msg.title %></h3>
+          <p><%= msg.text %></p>
+          <p class="date"><%= new Date(msg.timestamp).toDateString() %></p>
+        </article>
+      <% }); %>
+    </div>
+  <% } else { %>
+    <p>You haven't posted any messages yet. <a href="/messages/new">Post one now!</a></p>
+  <% } %>
+</main>
+<%- include('../partials/footer') %>

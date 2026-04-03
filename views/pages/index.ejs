@@ -22,24 +22,24 @@
     <% if (messages && messages.length > 0) { %>
       <% messages.forEach(msg => { %>
         <article class="message-card">
-            <div class="message-header">
-              <h2 class="message-title"><%= msg.title %></h2>
-              <p class="message-text"><%= msg.text %></p>
-            </div>
-            <div class="message-footer">
-              <% if (currentUser && currentUser.membership_status) { %>
-                <span class="author">By: <strong><%= msg.username %></strong></span>
-                <span class="date">on <%= new Date(msg.timestamp).toLocaleDateString() %></span>
-              <% } else { %>
-                <span class="author-hidden">By: <em>Anonymous</em></span>
-                <span class="date-hidden">(Join the club to see when)</span>
-              <% } %>
-              <% if (currentUser && currentUser.is_admin) { %>
-                <form action="/messages/<%= msg.id %>/delete" method="post" class="delete-form">
-                  <button type="submit" class="btn-delete">Delete</button>
-                </form>
-              <% } %>
-            </div>
+          <div class="message-header">
+            <h2 class="message-title"><%= msg.title %></h2>
+            <p class="message-text"><%= msg.text %></p>
+          </div>
+          <div class="message-footer">
+            <% if (currentUser && currentUser.membership_status) { %>
+              <span class="author">By: <strong><%= msg.username %></strong></span>
+              <span class="date">on <%= new Date(msg.timestamp).toLocaleDateString() %></span>
+            <% } else { %>
+              <span class="author-hidden">By: <em>Anonymous</em></span>
+              <span class="date-hidden">(Join the club to see when)</span>
+            <% } %>
+            <% if (currentUser && currentUser.is_admin) { %>
+              <form action="/messages/<%= msg.id %>/delete" method="post" class="delete-form">
+                <button type="submit" class="btn-delete">Delete</button>
+              </form>
+            <% } %>
+          </div>
         </article>
       <% }); %>
     <% } else { %>

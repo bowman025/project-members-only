@@ -10,6 +10,18 @@ exports.getNewMessage = (req, res) => {
   res.render('newMessage', { title: 'Create New Message' });
 }
 
+exports.getUserMessages = async (req, res, next) => {
+  try {
+    const messages = await db.getMessagesByUser(req.user.id);
+    res.render('userMessages', {
+      title: 'My Messages',
+      messages: messages,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 exports.postNewMessage = [
   body('title')
   .trim()
@@ -44,3 +56,13 @@ exports.postNewMessage = [
     }
   }
 ];
+
+exports.postDeleteMessage = async (req, res, next) => {
+  try {
+    const { messageId } = req.params;
+    await db.deleteMessage(messageId);
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
+}

@@ -14,11 +14,17 @@
       <ul>
         <li><a href="/">HOME</a></li>
         <% if (currentUser) { %>
-          <li><a href="/messages">MESSAGES</a></li>
+          <li><a href="/messages/my">MY MESSAGES</a></li>
+          <li><a href="/messages/new">NEW MESSAGE</a></li>
+          <% if (!currentUser.membership_status) { %>
+            <li><a href="/join-club">JOIN THE CLUB</a></li>
+          <% } else if (!currentUser.is_admin) { %>
+            <li><a href="/become-admin">BECOME ADMIN</a></li>
+          <% } %>
           <li><a href="/auth/logout">LOGOUT</a></li>
         <% } else { %>
-          <li><a href="/auth/register">REGISTER</a></li>
           <li><a href="/auth/login">LOG IN</a></li>
+          <li><a href="/auth/register">REGISTER</a></li>
         <% } %>
       </ul>
     </nav>

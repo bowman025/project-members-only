@@ -4,7 +4,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcryptjs');
 
 const SQL = `
-  DROP TABLE IF EXISTS users, messages CASCADE;
+  DROP TABLE IF EXISTS users, messages, "session" CASCADE;
 
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -39,7 +39,7 @@ const users = [
   {
     first_name: 'Isaac',
     last_name: 'Asimov',
-    username: 'IA',
+    username: 'TheSack',
     membership: true,
     messages: [
       { title: 'On Ignorance',
@@ -53,7 +53,7 @@ const users = [
   {
     first_name: 'Carl',
     last_name: 'Sagan',
-    username: 'CS',
+    username: 'CurlyCarl',
     membership: true,
     messages: [
       { title: 'On Earth',
@@ -67,7 +67,7 @@ const users = [
   {
     first_name: 'Arthur C.',
     last_name: 'Clarke',
-    username: 'ACC',
+    username: 'Arty-CC',
     membership: true,
     messages: [
       { title: 'On Morality and Religion', 
@@ -81,7 +81,7 @@ const users = [
   { 
     first_name: 'Philip K.',
     last_name: 'Dick',
-    username: 'PKD',
+    username: 'Philly-D',
     membership: true,
     messages: [
       { title: 'On Reality', 

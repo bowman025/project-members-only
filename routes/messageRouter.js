@@ -1,16 +1,21 @@
 const { Router } = require('express');
 const { 
   getNewMessage, 
-  postNewMessage 
+  postNewMessage, 
+  getUserMessages,
+  postDeleteMessage
 } = require('../controllers/messageController');
+const { 
+  isAuthenticated, 
+  isAdmin 
+} = require('../middleware/authMiddleware');
 const messageRouter = Router();
 
-const isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/auth/login');
-}
 
+messageRouter.get('/my', isAuthenticated, getUserMessages);
 messageRouter.get('/new', isAuthenticated, getNewMessage);
 messageRouter.post('/new', isAuthenticated, postNewMessage);
+
+messageRouter.post('/:messageId/delete', isAdmin, postDeleteMessage);
 
 module.exports = messageRouter;

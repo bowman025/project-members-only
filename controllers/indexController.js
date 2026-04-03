@@ -49,7 +49,50 @@ exports.postJoinClub = [
         'joinClub', 
         { 
           title: 'Join the Club', 
-          errors: [{msg: 'Incorrect passcode. Try again!' }] 
+          errors: [{msg: 'Incorrect passcode. Try again!' }]
+        }
+      );
+    }
+  }
+];
+
+exports.getBecomeAdmin = (req, res) => {
+  res.render('becomeAdmin', { title: 'Become Admin' });
+}
+
+exports.postBecomeAdmin = [
+  body('adminPasscode')
+  .trim()
+  .isLength({ min: 1 })
+  .escape()
+  .withMessage('Passcode is required.'),
+
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.render(
+        'becomeAdmin', 
+        {
+          title: 'Become Admin',
+          errors: errors.array(),
+        }
+      );
+    }
+
+    const { adminPasscode } = matchedData(req);
+    if (adminPasscode === process.env.ADMIN_PASSWORD) {
+      try {
+        await db.promoteToAdmin(req.user.id);
+        res.redirect('/');
+      } catch (error) {
+        next(error);
+      }
+    } else {
+      res.render(
+        'becomeAdmin', 
+        {
+          title: 'Become Admin',
+          errors: [{ msg: 'Incorrect admin passcode. Try again!' }]
         }
       );
     }
