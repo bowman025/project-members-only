@@ -263,7 +263,8 @@ hr {
   color: var(--text-main);
 }
 
-.auth-form {
+.auth-form,
+.message-form {
   background-color: var(--card-grey);
   padding: 2rem;
   border-radius: var(--radius);
@@ -275,7 +276,8 @@ hr {
   margin-top: 1rem;
 }
 
-.auth-form + p {
+.auth-form + p,
+.message-form + p {
   text-align: center;
   margin-top: 1.5rem;
   color: var(--text-muted);
