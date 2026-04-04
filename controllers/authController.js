@@ -53,7 +53,8 @@ exports.postSignup = [
       return res.render(
         'register', { 
           title: 'The Club: Sign Up', 
-          errors: errors.array()
+          errors: errors.array(),
+          user: req.body
         }
       );
     }

@@ -61,7 +61,7 @@ exports.postDeleteMessage = async (req, res, next) => {
   try {
     const { messageId } = req.params;
     await db.deleteMessage(messageId);
-    res.redirect('/');
+    res.redirect(req.get('referer') || '/');
   } catch (error) {
     next(error);
   }

@@ -7,7 +7,7 @@
       id="title" 
       minlength="1" 
       maxlength="50"
-      value="<%= locals.message ? message.title : '' %>"
+      value="<%= locals?.message?.title ?? '' %>"
       required
     >
   </div>
@@ -20,7 +20,7 @@
       minlength="1" 
       maxlength="2000" 
       required
-    ><%= locals.message ? message.text : '' %></textarea>
+    ><%= locals?.message?.text ?? '' %></textarea>
   </div>
   <button type="submit" class="btn-primary">Post Message</button>
 </form>

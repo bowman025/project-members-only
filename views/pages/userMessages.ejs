@@ -5,14 +5,21 @@
     <div class="message-list">
       <% messages.forEach(msg => { %>
         <article class="message-card">
-          <h3><%= msg.title %></h3>
-          <p><%= msg.text %></p>
-          <p class="date">Posted on <%= formatExactDate(msg.timestamp) %></p>
+          <h3 class="message-title"><%= msg.title %></h3>
+          <p class="message-text"><%= msg.text %></p>
+          <div class="message-footer">
+            <p class="date">Posted on <%= formatExactDate(msg.timestamp) %></p>
+            <% if (currentUser && currentUser.is_admin) { %>
+              <form action="/messages/<%= msg.id %>/delete" method="post" class="delete-form">
+                <button type="submit" class="btn-delete">Delete</button>
+              </form>
+            <% } %>
+          </div>
         </article>
       <% }); %>
     </div>
   <% } else { %>
-    <p>You haven't posted any messages yet. <a href="/messages/new">Post one now!</a></p>
+    <p>You haven't posted any messages yet. <a href="/messages/new">POST NOW</a></p>
   <% } %>
 </main>
 <%- include('../partials/footer') %>

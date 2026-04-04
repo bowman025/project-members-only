@@ -5,7 +5,7 @@
     <section class="user-actions">
       <p>Welcome back, <strong><%= currentUser.username %></strong>!</p>
       <% if (!currentUser.membership_status) { %>
-        <p><a href="/join-club" class="btn-join">Join the club and see who's posting!</a></p>
+        <p class="status-badge">Registered Member</p>
       <% } else { %>
         <p class="status-badge">⭐ Club Member
         <% if (currentUser.is_admin) { %>
@@ -13,11 +13,11 @@
         <% } %>
         </p>
       <% } %>
-      <a href="/messages/new">Post a New Message</a>
+      <a href="/messages/new">NEW MESSAGE</a>
     </section>
   <% } else { %>
     <section class="guest-actions">
-      <p><a href="/auth/login">Log in</a> or <a href="/auth/register">Register</a> to start posting.
+      <p><a href="/auth/login">LOG IN</a> or <a href="/auth/register">REGISTER</a> to start posting.
       </p>
     </section>
   <% } %>
