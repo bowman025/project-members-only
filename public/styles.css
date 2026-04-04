@@ -345,7 +345,7 @@ hr {
   color: var(--error-red);
   padding: 1rem 1rem 1rem 2.5rem;
   border-radius: var(--radius);
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .error-list li {

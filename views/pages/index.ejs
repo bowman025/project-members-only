@@ -35,8 +35,8 @@
               <span class="author">By: <strong><%= msg.username %></strong></span>
               <span class="date"><%= formatRelativeDate(msg.timestamp) %></span>
             <% } else { %>
-              <span class="author-hidden">By: Anonymous</span>
-              <span class="date-hidden">(Join the club to see when)</span>
+              <span class="author-hidden">By: (Join to see who)</span>
+              <span class="date-hidden">Date: (Join to see when)</span>
             <% } %>
             <% if (currentUser && currentUser.is_admin) { %>
               <form action="/messages/<%= msg.id %>/delete" method="post" class="delete-form">

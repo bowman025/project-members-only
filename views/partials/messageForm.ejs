@@ -1,11 +1,26 @@
 <form action="/messages/new" method="post">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" name="title" id="title" minlength="1" maxlength="50" required>
+    <input 
+      type="text" 
+      name="title" 
+      id="title" 
+      minlength="1" 
+      maxlength="50"
+      value="<%= locals.message ? message.title : '' %>"
+      required
+    >
   </div>
   <div class="form-group">
     <label for="text">Message</label>
-    <textarea name="text" id="text" rows="5" minlength="1" maxlength="2000" required></textarea>
+    <textarea 
+      name="text" 
+      id="text" 
+      rows="5" 
+      minlength="1" 
+      maxlength="2000" 
+      required
+    ><%= locals.message ? message.text : '' %></textarea>
   </div>
   <button type="submit" class="btn-primary">Post Message</button>
 </form>

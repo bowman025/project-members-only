@@ -15,7 +15,7 @@ exports.getHome = async (req, res, next) => {
 }
 
 exports.getJoinClub = (req, res) => {
-  res.render('joinClub', { title: 'Join The Club' });
+  res.render('joinClub', { title: 'The Club: Join The Club' });
 }
 
 exports.postJoinClub = [ 
@@ -30,7 +30,7 @@ exports.postJoinClub = [
     if (!errors.isEmpty()) {
       return res.render(
         'joinClub',
-        { title: 'Join The Club', errors: errors.array() } 
+        { title: 'The Club: Join The Club', errors: errors.array() } 
       );
     }
     const data = matchedData(req);
@@ -48,8 +48,8 @@ exports.postJoinClub = [
       res.render(
         'joinClub', 
         { 
-          title: 'Join The Club', 
-          errors: [{msg: 'Incorrect answer. Try again!' }]
+          title: 'The Club: Join The Club', 
+          errors: [{ msg: 'Incorrect answer. Try again!' }]
         }
       );
     }
