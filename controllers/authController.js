@@ -77,13 +77,19 @@ exports.postSignup = [
   }
 ];
 
-exports.getLogin = (_, res) => {
-  return res.render('login', { title: 'The Club: Log In' });
+exports.getLogin = (req, res) => {
+  const messages = req.session.messages || [];
+  req.session.messages = [];
+  res.render('login', { 
+    title: 'The Club: Log In',
+    errors: messages 
+  });
 }
 
 exports.postLogin = passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
+  failureMessage: true
 });
 
 exports.getLogout = (req, res, next) => {
