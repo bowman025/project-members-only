@@ -163,12 +163,16 @@ nav ul li a[href="/become-admin"]:hover,
 }
 
 .container {
-  max-width: 800px;
+  /* max-width: 800px; */
+  width: clamp(200px, 95vw, 800px);
   margin: 2rem auto;
   padding: 0 1.5rem;
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .no-messages {
     text-align: center;
   }
 }
@@ -356,8 +360,16 @@ hr {
 }
 
 .err {
-  margin-top: 20px;
+  margin: 2rem auto;
   text-align: center;
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 }
 
 footer {
