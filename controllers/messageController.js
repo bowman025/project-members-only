@@ -26,12 +26,10 @@ exports.postNewMessage = [
   body('title')
   .trim()
   .isLength({ min: 1, max: 50 })
-  .escape()
   .withMessage('Title should be between 1 and 50 characters.'),
   body('text')
   .trim()
   .isLength({ min: 1, max: 2000 })
-  .escape()
   .withMessage('Message text should be between 1 and 2000 characters.'),
 
   async (req, res, next) => {

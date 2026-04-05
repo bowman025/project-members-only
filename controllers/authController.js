@@ -17,19 +17,18 @@ exports.postSignup = [
   .optional({ values: 'falsy' })
   .trim()
   .isLength({ min: 1, max: 50 })
-  .escape()
   .withMessage('First name should be between 1 and 50 characters.'),
   body('last_name')
   .optional({ values: 'falsy' })
   .trim()
   .isLength({ min: 1, max: 50 })
-  .escape()
   .withMessage('Last name should be between 1 and 50 characters.'),
   body('username')
   .trim()
   .isLength({ min: 1, max: 50 })
-  .escape()
   .withMessage('Username should be between 1 and 50 characters.')
+  .isAlphanumeric()
+  .withMessage('Username should only contain letters and numbers.')
   .custom(async (value) => {
     const user = await db.getUserByUsername(value);
     if (user) {
